@@ -1,0 +1,5 @@
+{"id":"director-cut","type":"video","path":"assets/director-cut-silent.mp4","source":"video 1.mp4","license":"user-provided","notes":"Exact V3 proof EDL; no Video 4 frames"}
+{"id":"proof-vo","type":"audio","path":"assets/proof-vo-linh-r140.wav","source":"macOS Linh vi_VN","license":"local-system-voice","notes":"Temporary neutral proof voice; not VoiceStudio and not cloned"}
+{"id":"industrial-pulse","type":"audio","path":".media/audio/bgm/industrial-pulse.wav","source":"V1 resolved media","license":"workspace-local","notes":"Low-level bed"}
+{"id":"opening-impact","type":"audio","path":".media/audio/sfx/opening-impact.mp3","source":"V1 resolved media","license":"workspace-local"}
+{"id":"metal-tick","type":"audio","path":".media/audio/sfx/metal-tick.mp3","source":"V1 resolved media","license":"workspace-local"}

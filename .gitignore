@@ -1,0 +1,49 @@
+# Local operating-system and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Local credentials and machine-specific configuration
+.env
+.env.*
+!.env.example
+.mcp.json
+*.pem
+*.key
+
+# JavaScript dependencies and generated output
+node_modules/
+dist/
+build/
+out/
+output/
+.cache/
+
+# Python environments, caches, and downloaded models
+.venv/
+.xpu_venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.uv-cache/
+.uv-bootstrap/
+.uv-python/
+.hf-cache/
+.models/
+outputs/
+merged_models_cache/
+finetune/dataset/
+finetune/output/
+
+# Generated video-analysis and preview artifacts
+.swift-cache*/
+.thumbnails/
+.waveform-cache/
+**/.hyperframes/preview/
+snapshots/
+contact-sheets/
+qa/
+
+# Preserved metadata from repositories consolidated into this monorepo
+.git-nested-backup/

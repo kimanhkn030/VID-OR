@@ -1,0 +1,16 @@
+{
+  "duration": 92.321995,
+  "assertions": [
+    { "kind": "appearsBy", "selector": "#beat-04 .proof-row:nth-child(1)", "bySec": 9.5 },
+    { "kind": "before", "a": "#beat-04 .proof-row:nth-child(1)", "b": "#beat-04 .proof-row:nth-child(2)" },
+    { "kind": "before", "a": "#beat-16 .compact-item:nth-child(1)", "b": "#beat-16 .compact-item:nth-child(2)" },
+    { "kind": "before", "a": "#beat-16 .compact-item:nth-child(2)", "b": "#beat-16 .compact-item:nth-child(3)" },
+    { "kind": "before", "a": "#beat-18 .compact-item:nth-child(1)", "b": "#beat-18 .compact-item:nth-child(2)" },
+    { "kind": "before", "a": "#beat-18 .compact-item:nth-child(2)", "b": "#beat-18 .compact-item:nth-child(3)" },
+    { "kind": "before", "a": "#beat-20 .compact-item:nth-child(1)", "b": "#beat-20 .compact-item:nth-child(2)" },
+    { "kind": "before", "a": "#beat-20 .compact-item:nth-child(2)", "b": "#beat-20 .compact-item:nth-child(3)" },
+    { "kind": "appearsBy", "selector": "#beat-20 .compact-item:nth-child(3)", "bySec": 76.2 },
+    { "kind": "staysInFrame", "selector": "#beat-20 .proof-cluster" },
+    { "kind": "appearsBy", "selector": "#beat-24 .headline--phone", "bySec": 89.4 }
+  ]
+}

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="vi" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Oristar — HyperFrames V1</title>
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      * { box-sizing: border-box; }
+      html, body {
+        width: 1080px; height: 1920px; margin: 0; overflow: hidden;
+        background: #081827; font-family: "Oswald", "Montserrat", sans-serif;
+      }
+      #root {
+        position: relative; width: 100%; height: 100%; overflow: hidden;
+        background: #081827; --brand: #159bdf; --accent: #159bdf; --accent-2: #22c55e;
+      }
+      #source-video {
+        position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;
+      }
+      .clip { position: absolute; inset: 0; }
+      .callout-clip { z-index: 10; pointer-events: none; }
+      .callout-inner {
+        position: absolute; left: 72px; right: 72px; top: 292px;
+        display: flex; flex-direction: column; align-items: center; gap: 20px;
+        transform-origin: 50% 50%; will-change: transform, opacity, filter;
+      }
+      .callout-inner.low { top: 330px; }
+      .line-row { display: flex; align-items: center; justify-content: center; gap: 18px; width: 100%; }
+      .hf-catalog-line-by-line-slide {
+        display: grid; justify-items: center; gap: 2px; color: #159bdf;
+        font-family: "Oswald", "Montserrat", sans-serif; font-weight: 700;
+        font-size: 92px; line-height: 0.98; letter-spacing: -0.025em;
+        text-align: center; text-transform: uppercase;
+      }
+      .hf-catalog-line-by-line-slide span {
+        display: block; width: max-content; max-width: 930px; padding: 0 10px 10px;
+        color: #159bdf; -webkit-text-stroke: 4px #f8fbff; paint-order: stroke fill;
+        text-shadow: 0 7px 0 #0a4470, 0 12px 20px rgba(4, 26, 47, 0.54);
+        transform: translate(calc(var(--hf-line-x, 0px) * var(--hf-line-axis-x, 1)), var(--hf-line-y, 0px));
+        filter: blur(var(--hf-line-blur, 0px)); will-change: transform, filter, opacity;
+      }
+      .hf-catalog-line-by-line-slide .secondary {
+        color: #f8fbff; -webkit-text-stroke: 4px #159bdf;
+        text-shadow: 0 7px 0 #0a4470, 0 12px 20px rgba(4, 26, 47, 0.54);
+      }
+      .proof-label {
+        display: inline-flex; align-items: center; gap: 14px; padding: 11px 20px 12px;
+        border: 2px solid rgba(248, 251, 255, 0.82); border-radius: 12px;
+        background: rgba(5, 41, 67, 0.74); color: #f8fbff;
+        font-family: "JetBrains Mono", monospace; font-size: 22px; font-weight: 700;
+        letter-spacing: 0.06em; line-height: 1; text-transform: uppercase;
+        box-shadow: 0 8px 22px rgba(4, 26, 47, 0.24);
+      }
+      .proof-label::before {
+        content: ""; width: 44px; height: 4px; border-radius: 999px; background: #22c55e;
+      }
+      .hf-transition-success-check {
+        display: grid; flex: 0 0 auto; place-items: center; width: 72px; height: 72px;
+        border: 4px solid #f8fbff; border-radius: 13px; background: #22c55e; color: #f8fbff;
+        box-shadow: 0 7px 0 #087a36, 0 12px 18px rgba(4, 26, 47, 0.35);
+      }
+      .hf-transition-success-check svg {
+        width: 54px; height: 54px; fill: none; stroke: currentColor; stroke-width: 7;
+        stroke-linecap: round; stroke-linejoin: round; filter: blur(var(--hf-check-blur, 0px));
+        transform: rotate(var(--hf-check-rotate, 0deg)) scale(var(--hf-check-scale, 1));
+        will-change: transform, filter, opacity;
+      }
+      .hf-transition-success-check circle { display: none; }
+      .hf-transition-success-check path { stroke-dasharray: 36; stroke-dashoffset: var(--hf-check-dash, 0); }
+      .corner-tag {
+        position: absolute; left: 74px; bottom: 112px; z-index: 5;
+        display: flex; align-items: center; gap: 14px; color: rgba(248, 251, 255, 0.92);
+        font-family: "JetBrains Mono", monospace; font-size: 19px; font-weight: 700;
+        letter-spacing: 0.08em; text-transform: uppercase;
+        text-shadow: 0 2px 5px rgba(4, 26, 47, 0.7);
+      }
+      .corner-tag::before {
+        content: ""; width: 58px; height: 4px; border-radius: 999px;
+        background: #159bdf; box-shadow: 0 2px 0 #f8fbff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="video1-hyperframes-v1" data-start="0" data-duration="15" data-width="1080" data-height="1920">
+      <video id="source-video" class="clip" src="assets/video1-first15.mp4" playsinline data-has-audio="true" data-audio-group="voiceover" data-start="0" data-duration="15" data-track-index="1" data-volume="1"></video>
+      <div class="corner-tag" data-layout-ignore>Oristar // Năng lực sản xuất</div>
+
+      <section id="beat-1" class="clip callout-clip" data-start="0.35" data-duration="2.3" data-track-index="10">
+        <div class="callout-inner" id="beat-1-inner">
+          <div class="hf-catalog-line-by-line-slide" id="beat-1-lines">
+            <span id="beat-1-line-1">Kho vật liệu</span>
+            <span id="beat-1-line-2" class="secondary">Quy mô lớn</span>
+          </div>
+          <div class="proof-label" id="beat-1-label">Toàn cảnh kho Oristar</div>
+        </div>
+      </section>
+
+      <section id="beat-2" class="clip callout-clip" data-start="3.1" data-duration="2.35" data-track-index="11">
+        <div class="callout-inner low" id="beat-2-inner">
+          <div class="line-row">
+            <div class="hf-transition-success-check" id="beat-2-check" aria-label="Đã xác nhận"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" /><path d="M20 33.5l8 8L45 23" /></svg></div>
+            <div class="hf-catalog-line-by-line-slide" id="beat-2-lines">
+              <span id="beat-2-line-1">Khu vực</span><span id="beat-2-line-2" class="secondary">Lưu kho</span>
+            </div>
+          </div>
+          <div class="proof-label" id="beat-2-label">Bố trí theo khu vực</div>
+        </div>
+      </section>
+
+      <section id="beat-3" class="clip callout-clip" data-start="5.95" data-duration="2.3" data-track-index="12">
+        <div class="callout-inner" id="beat-3-inner">
+          <div class="hf-catalog-line-by-line-slide" id="beat-3-lines" style="--hf-line-axis-x:-1">
+            <span id="beat-3-line-1">Vật liệu</span><span id="beat-3-line-2" class="secondary">Sẵn kho</span>
+          </div>
+          <div class="proof-label" id="beat-3-label">Quan sát trực tiếp tại kho</div>
+        </div>
+      </section>
+
+      <section id="beat-4" class="clip callout-clip" data-start="8.85" data-duration="2.5" data-track-index="13">
+        <div class="callout-inner low" id="beat-4-inner">
+          <div class="line-row">
+            <div class="hf-transition-success-check" id="beat-4-check" aria-label="Đã xác nhận"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" /><path d="M20 33.5l8 8L45 23" /></svg></div>
+            <div class="hf-catalog-line-by-line-slide" id="beat-4-lines">
+              <span id="beat-4-line-1">Dây chuyền</span><span id="beat-4-line-2" class="secondary">Gia công</span>
+            </div>
+          </div>
+          <div class="proof-label" id="beat-4-label">Thiết bị trong nhà xưởng</div>
+        </div>
+      </section>
+
+      <section id="beat-5" class="clip callout-clip" data-start="11.95" data-duration="2.8" data-track-index="14">
+        <div class="callout-inner" id="beat-5-inner">
+          <div class="line-row">
+            <div class="hf-transition-success-check" id="beat-5-check" aria-label="Đã xác nhận"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" /><path d="M20 33.5l8 8L45 23" /></svg></div>
+            <div class="hf-catalog-line-by-line-slide" id="beat-5-lines">
+              <span id="beat-5-line-1">Máy móc</span><span id="beat-5-line-2" class="secondary">Đang vận hành</span>
+            </div>
+          </div>
+          <div class="proof-label" id="beat-5-label">Hoạt động tại thời điểm ghi hình</div>
+        </div>
+      </section>
+
+      <audio
+        id="music-bed"
+        class="clip"
+        src=".media/audio/bgm/bgm_001.wav"
+        data-start="0"
+        data-duration="15"
+        data-track-index="90"
+        data-volume="1"
+        data-fx-carve="{&quot;enabled&quot;:true,&quot;sources&quot;:[&quot;source-video&quot;],&quot;strength&quot;:0.55}"
+        data-fx-chain="{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;type&quot;:&quot;peaking&quot;,&quot;id&quot;:&quot;vo-space-400&quot;,&quot;label&quot;:&quot;VO Space 400 Hz&quot;,&quot;params&quot;:{&quot;frequency&quot;:400,&quot;gain&quot;:-3,&quot;q&quot;:1.4}},{&quot;type&quot;:&quot;peaking&quot;,&quot;id&quot;:&quot;vo-space-1000&quot;,&quot;label&quot;:&quot;VO Space 1 kHz&quot;,&quot;params&quot;:{&quot;frequency&quot;:1000,&quot;gain&quot;:-4,&quot;q&quot;:1.5}},{&quot;type&quot;:&quot;peaking&quot;,&quot;id&quot;:&quot;vo-space-1600&quot;,&quot;label&quot;:&quot;VO Space 1.6 kHz&quot;,&quot;params&quot;:{&quot;frequency&quot;:1600,&quot;gain&quot;:-7,&quot;q&quot;:1.7}},{&quot;type&quot;:&quot;peaking&quot;,&quot;id&quot;:&quot;vo-space-2500&quot;,&quot;label&quot;:&quot;VO Space 2.5 kHz&quot;,&quot;params&quot;:{&quot;frequency&quot;:2500,&quot;gain&quot;:-4,&quot;q&quot;:1.5}}]}"
+        data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0},{&quot;t&quot;:0.5,&quot;v&quot;:0.28},{&quot;t&quot;:0.75,&quot;v&quot;:0.18},{&quot;t&quot;:2.95,&quot;v&quot;:0.18},{&quot;t&quot;:3.15,&quot;v&quot;:0.28},{&quot;t&quot;:3.52,&quot;v&quot;:0.18},{&quot;t&quot;:4.78,&quot;v&quot;:0.18},{&quot;t&quot;:5.05,&quot;v&quot;:0.29},{&quot;t&quot;:6.72,&quot;v&quot;:0.18},{&quot;t&quot;:7.45,&quot;v&quot;:0.18},{&quot;t&quot;:7.68,&quot;v&quot;:0.28},{&quot;t&quot;:8.02,&quot;v&quot;:0.18},{&quot;t&quot;:9.12,&quot;v&quot;:0.18},{&quot;t&quot;:9.38,&quot;v&quot;:0.27},{&quot;t&quot;:9.7,&quot;v&quot;:0.18},{&quot;t&quot;:10.35,&quot;v&quot;:0.18},{&quot;t&quot;:10.6,&quot;v&quot;:0.27},{&quot;t&quot;:10.92,&quot;v&quot;:0.18},{&quot;t&quot;:13.58,&quot;v&quot;:0.18},{&quot;t&quot;:13.85,&quot;v&quot;:0.27},{&quot;t&quot;:14.18,&quot;v&quot;:0.18},{&quot;t&quot;:14.45,&quot;v&quot;:0.18},{&quot;t&quot;:15,&quot;v&quot;:0}]}]}"
+      ></audio>
+      <audio id="sfx-opening-impact" class="clip" src=".media/audio/sfx/sfx_002.mp3" data-start="0.3" data-duration="2.1" data-track-index="100" data-volume="0.10"></audio>
+      <audio id="sfx-whoosh-2" class="clip" src=".media/audio/sfx/sfx_001.mp3" data-start="3.05" data-duration="0.6" data-track-index="101" data-volume="0.16"></audio>
+      <audio id="sfx-click-2" class="clip" src=".media/audio/sfx/sfx_003.mp3" data-start="3.28" data-duration="0.4" data-track-index="102" data-volume="0.14"></audio>
+      <audio id="sfx-whoosh-3" class="clip" src=".media/audio/sfx/sfx_001.mp3" data-start="5.9" data-duration="0.6" data-track-index="103" data-volume="0.14"></audio>
+      <audio id="sfx-whoosh-4" class="clip" src=".media/audio/sfx/sfx_001.mp3" data-start="8.8" data-duration="0.6" data-track-index="104" data-volume="0.16"></audio>
+      <audio id="sfx-click-4" class="clip" src=".media/audio/sfx/sfx_003.mp3" data-start="9.04" data-duration="0.4" data-track-index="105" data-volume="0.14"></audio>
+      <audio id="sfx-whoosh-5" class="clip" src=".media/audio/sfx/sfx_001.mp3" data-start="11.9" data-duration="0.6" data-track-index="106" data-volume="0.16"></audio>
+      <audio id="sfx-click-5" class="clip" src=".media/audio/sfx/sfx_003.mp3" data-start="12.16" data-duration="0.4" data-track-index="107" data-volume="0.15"></audio>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+        const tl = gsap.timeline({ paused: true });
+        function lineSlide(selector, at, fromX, fromY, stagger, ease) {
+          tl.fromTo(selector,
+            { opacity: 0, "--hf-line-x": fromX + "px", "--hf-line-y": fromY + "px", "--hf-line-blur": "7px" },
+            { opacity: 1, "--hf-line-x": "0px", "--hf-line-y": "0px", "--hf-line-blur": "0px", duration: 0.38, stagger: stagger, ease: ease }, at);
+        }
+        function checkPop(id, at) {
+          tl.fromTo(id + " svg",
+            { opacity: 0, "--hf-check-scale": 0.68, "--hf-check-rotate": "-16deg", "--hf-check-blur": "7px" },
+            { opacity: 1, "--hf-check-scale": 1, "--hf-check-rotate": "0deg", "--hf-check-blur": "0px", duration: 0.34, ease: "power3.out" }, at);
+          tl.fromTo(id + " path", { "--hf-check-dash": 36 }, { "--hf-check-dash": 0, duration: 0.42, ease: "power2.out" }, at + 0.12);
+        }
+        function labelIn(id, at, fromX) {
+          tl.fromTo(id, { opacity: 0, x: fromX, scale: 0.94 }, { opacity: 1, x: 0, scale: 1, duration: 0.4, ease: "power3.out" }, at);
+        }
+        function beatExit(id, at) { tl.to(id, { opacity: 0, y: -28, duration: 0.22, ease: "power3.in" }, at); }
+
+        tl.fromTo("#beat-1-inner", { opacity: 0, scale: 1.34, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.48, ease: "power4.out" }, 0.35);
+        lineSlide("#beat-1-lines span", 0.38, -48, 18, 0.09, "power4.out");
+        labelIn("#beat-1-label", 0.88, -34); beatExit("#beat-1-inner", 2.4);
+
+        lineSlide("#beat-2-lines span", 3.1, -72, 18, 0.08, "expo.out");
+        checkPop("#beat-2-check", 3.18); labelIn("#beat-2-label", 3.68, 32); beatExit("#beat-2-inner", 5.2);
+
+        lineSlide("#beat-3-lines span", 5.95, 72, 18, 0.08, "power4.out");
+        labelIn("#beat-3-label", 6.46, -32); beatExit("#beat-3-inner", 8.0);
+
+        lineSlide("#beat-4-lines span", 8.85, -52, 64, 0.07, "circ.out");
+        checkPop("#beat-4-check", 8.95); labelIn("#beat-4-label", 9.46, 30); beatExit("#beat-4-inner", 11.08);
+
+        tl.fromTo("#beat-5-inner", { opacity: 0, scale: 0.76, y: 44 }, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "power3.out" }, 11.95);
+        lineSlide("#beat-5-lines span", 12.0, -54, 18, 0.08, "power4.out");
+        checkPop("#beat-5-check", 12.08); labelIn("#beat-5-label", 12.58, -28); beatExit("#beat-5-inner", 14.52);
+
+        tl.fromTo(".corner-tag", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 0.1);
+        window.__timelines["video1-hyperframes-v1"] = tl;
+      })();
+    </script>
+  </body>
+</html>

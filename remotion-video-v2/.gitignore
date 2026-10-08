@@ -1,0 +1,5 @@
+node_modules
+out
+.DS_Store
+.swift-cache*
+source-first18.wav

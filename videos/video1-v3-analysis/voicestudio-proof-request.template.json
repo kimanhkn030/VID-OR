@@ -1,0 +1,6 @@
+{
+  "model": "tts-1",
+  "voice": "__DISCOVERED_NEUTRAL_VIETNAMESE_VOICE_ID__",
+  "input": "Một cuộn kim loại đi qua những gì trước khi sẵn sàng giao hàng? Tại ORISTAR: cắt, tạo hình, gia công cơ khí, thấm nitơ chân không — rồi đóng gói và xuất xưởng.",
+  "response_format": "wav"
+}

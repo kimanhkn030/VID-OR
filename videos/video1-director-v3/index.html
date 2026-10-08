@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="vi" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>ORISTAR — Director V3</title>
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; margin: 0; overflow: hidden; background: #061a29; }
+      body { font-family: "Oswald", sans-serif; }
+      #root {
+        position: relative; width: 1080px; height: 1920px; overflow: hidden;
+        background: #061a29; --blue: #12a7e8; --white: #f7fbff; --red: #ef3340; --green: #22c55e;
+      }
+      #director-cut { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+      #grade {
+        position: absolute; inset: 0; z-index: 2; pointer-events: none;
+        background: linear-gradient(180deg, rgba(2, 16, 27, .32) 0%, rgba(2, 16, 27, .07) 34%, rgba(2, 16, 27, 0) 66%);
+      }
+      #cut-flash { position: absolute; inset: 0; z-index: 6; background: #d8f4ff; opacity: 0; pointer-events: none; }
+      .clip { position: absolute; inset: 0; }
+      .text-clip { z-index: 10; pointer-events: none; }
+      .card {
+        position: absolute; left: 74px; right: 150px; top: 316px;
+        display: flex; flex-direction: column; align-items: flex-start; gap: 18px;
+        transform-origin: 0 50%; will-change: transform, opacity, filter;
+      }
+      .card.lower { top: 368px; }
+      .eyebrow {
+        display: flex; align-items: center; gap: 14px;
+        color: rgba(247, 251, 255, .95); font-family: "IBM Plex Mono", monospace;
+        font-size: 21px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase;
+        text-shadow: 0 3px 10px rgba(0, 18, 31, .78);
+      }
+      .eyebrow::before { content: ""; width: 70px; height: 5px; border-radius: 99px; background: var(--red); box-shadow: 0 2px 0 rgba(0,0,0,.25); }
+      .headline {
+        display: grid; justify-items: start; gap: 0;
+        font-size: 104px; line-height: .94; font-weight: 800; letter-spacing: -.035em; text-transform: uppercase;
+      }
+      .headline.wide { font-size: 92px; }
+      .headline span {
+        display: block; width: max-content; max-width: 850px; padding: 0 12px 10px 2px;
+        color: var(--blue); -webkit-text-stroke: 4px var(--white); paint-order: stroke fill;
+        text-shadow: 0 8px 0 #07385f, 0 18px 28px rgba(0, 18, 31, .5);
+        transform: translate(var(--tx, 0px), var(--ty, 0px));
+        filter: blur(var(--blur, 0px)); will-change: transform, opacity, filter;
+      }
+      .headline span.alt { color: var(--white); -webkit-text-stroke: 4px var(--blue); }
+      .status {
+        display: inline-flex; align-items: center; gap: 12px; padding: 10px 17px 11px;
+        border: 2px solid rgba(247, 251, 255, .82); border-radius: 10px;
+        background: rgba(4, 42, 67, .72); color: var(--white);
+        font-family: "IBM Plex Mono", monospace; font-size: 21px; font-weight: 800;
+        letter-spacing: .07em; text-transform: uppercase; box-shadow: 0 10px 24px rgba(0, 18, 31, .34);
+      }
+      .status .dot { width: 13px; height: 13px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px rgba(18,167,232,.24); }
+      .status.confirm .dot { background: var(--green); box-shadow: 0 0 0 4px rgba(34,197,94,.24); }
+      #sequence-rail {
+        position: absolute; left: 74px; bottom: 106px; z-index: 8; display: flex; align-items: center; gap: 14px;
+        color: rgba(247, 251, 255, .88); font-family: "IBM Plex Mono", monospace;
+        font-size: 18px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+        text-shadow: 0 3px 8px rgba(0,18,31,.7);
+      }
+      #sequence-rail::before { content: ""; width: 48px; height: 4px; background: var(--red); border-radius: 10px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="video1-director-v3" data-start="0" data-duration="15" data-width="1080" data-height="1920">
+      <video id="director-cut" class="clip" src="assets/director-cut-silent.mp4" playsinline muted data-start="0" data-duration="15" data-track-index="1"></video>
+      <div id="grade" data-layout-ignore></div>
+      <div id="cut-flash" data-layout-ignore></div>
+      <div id="sequence-rail" data-layout-ignore>ORISTAR / PROCESS FILM</div>
+
+      <section id="hook" class="clip text-clip" data-start="0.18" data-duration="2.12" data-track-index="10">
+        <div id="hook-inner" class="card">
+          <div class="eyebrow" id="hook-code">TỪ NGUYÊN LIỆU ĐẾN XUẤT XƯỞNG</div>
+          <div class="headline wide" id="hook-lines"><span id="hook-line-1">MỘT CUỘN KIM LOẠI</span><span id="hook-line-2" class="alt">ĐI QUA NHỮNG GÌ?</span></div>
+        </div>
+      </section>
+
+      <section id="material" class="clip text-clip" data-start="2.45" data-duration="2.15" data-track-index="11">
+        <div id="material-inner" class="card lower">
+          <div class="eyebrow" id="material-code">PROCESS 01</div>
+          <div class="headline" id="material-lines"><span id="material-line-1">NGUYÊN LIỆU</span><span id="material-line-2" class="alt">TẠO HÌNH</span></div>
+        </div>
+      </section>
+
+      <section id="cutting" class="clip text-clip" data-start="4.92" data-duration="2.12" data-track-index="12">
+        <div id="cutting-inner" class="card">
+          <div class="eyebrow" id="cutting-code">PROCESS 02</div>
+          <div class="headline" id="cutting-lines"><span id="cutting-line-1">CẮT</span></div>
+          <div class="status" id="cutting-status"><span class="dot"></span>THEO NHỊP VẬN HÀNH</div>
+        </div>
+      </section>
+
+      <section id="machining" class="clip text-clip" data-start="7.52" data-duration="2.34" data-track-index="13">
+        <div id="machining-inner" class="card lower">
+          <div class="eyebrow" id="machining-code">PROCESS 03</div>
+          <div class="headline" id="machining-lines"><span id="machining-line-1">GIA CÔNG</span><span id="machining-line-2" class="alt">CƠ KHÍ</span></div>
+        </div>
+      </section>
+
+      <section id="treatment" class="clip text-clip" data-start="10.18" data-duration="2.5" data-track-index="14">
+        <div id="treatment-inner" class="card">
+          <div class="eyebrow" id="treatment-code">PROCESS 04</div>
+          <div class="headline wide" id="treatment-lines"><span id="treatment-line-1">THẤM NITƠ</span><span id="treatment-line-2" class="alt">CHÂN KHÔNG</span></div>
+        </div>
+      </section>
+
+      <section id="dispatch" class="clip text-clip" data-start="12.96" data-duration="1.22" data-track-index="15">
+        <div id="dispatch-inner" class="card lower">
+          <div class="eyebrow" id="dispatch-code">FINAL STEP</div>
+          <div class="headline wide" id="dispatch-lines"><span id="dispatch-line-1">SẴN SÀNG</span><span id="dispatch-line-2" class="alt">GIAO HÀNG</span></div>
+          <div class="status confirm" id="dispatch-status"><span class="dot"></span>XUẤT XƯỞNG</div>
+        </div>
+      </section>
+
+      <audio id="proof-voice" class="clip" src="assets/proof-vo-linh-r140.wav" data-start="0.24" data-duration="13.088271" data-track-index="80" data-volume="1"></audio>
+      <audio id="music-bed" class="clip" src=".media/audio/bgm/industrial-pulse.wav" data-start="0" data-duration="15" data-track-index="90" data-volume="1" data-fx-carve="{&quot;enabled&quot;:true,&quot;sources&quot;:[&quot;proof-voice&quot;],&quot;strength&quot;:0.62}" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0},{&quot;t&quot;:0.45,&quot;v&quot;:0.12},{&quot;t&quot;:12.9,&quot;v&quot;:0.12},{&quot;t&quot;:14.3,&quot;v&quot;:0.08},{&quot;t&quot;:15,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="opening-impact" class="clip" src=".media/audio/sfx/opening-impact.mp3" data-start="0.1" data-duration="2.115906" data-track-index="100" data-volume="0.08"></audio>
+      <audio id="metal-tick" class="clip" src=".media/audio/sfx/metal-tick.mp3" data-start="7.52" data-duration="0.365688" data-track-index="101" data-volume="0.14"></audio>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+        const tl = gsap.timeline({ paused: true });
+
+        function enterCard(card, lines, code, status, at, fromX) {
+          tl.fromTo(card, { opacity: 0, scale: 1.12, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.42, ease: "power4.out" }, at);
+          tl.fromTo(lines + " span", { opacity: 0, "--tx": fromX + "px", "--ty": "18px", "--blur": "6px" }, { opacity: 1, "--tx": "0px", "--ty": "0px", "--blur": "0px", duration: 0.38, stagger: 0.08, ease: "expo.out" }, at + 0.03);
+          tl.fromTo(code, { opacity: 0, x: -26 }, { opacity: 1, x: 0, duration: 0.32, ease: "power3.out" }, at + 0.12);
+          if (status) tl.fromTo(status, { opacity: 0, x: 24, scale: 0.94 }, { opacity: 1, x: 0, scale: 1, duration: 0.34, ease: "back.out(1.7)" }, at + 0.46);
+        }
+        function exitCard(card, at) {
+          tl.to(card, { opacity: 0, y: -24, filter: "blur(5px)", duration: 0.2, ease: "power3.in" }, at);
+        }
+        function cutPulse(at) {
+          tl.fromTo("#cut-flash", { opacity: 0.16 }, { opacity: 0, duration: 0.18, ease: "power2.out" }, at);
+        }
+
+        tl.fromTo("#director-cut", { scale: 1.035 }, { scale: 1, duration: 2.35, ease: "sine.out" }, 0);
+        tl.fromTo("#sequence-rail", { opacity: 0, x: -28 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 0.12);
+
+        enterCard("#hook-inner", "#hook-lines", "#hook-code", null, 0.18, -62);
+        exitCard("#hook-inner", 2.14);
+        cutPulse(2.4);
+
+        enterCard("#material-inner", "#material-lines", "#material-code", null, 2.45, 72);
+        exitCard("#material-inner", 4.48);
+        cutPulse(4.8);
+
+        enterCard("#cutting-inner", "#cutting-lines", "#cutting-code", "#cutting-status", 4.92, -68);
+        exitCard("#cutting-inner", 6.88);
+        cutPulse(7.4);
+
+        enterCard("#machining-inner", "#machining-lines", "#machining-code", null, 7.52, 70);
+        exitCard("#machining-inner", 9.72);
+        cutPulse(10.1);
+
+        enterCard("#treatment-inner", "#treatment-lines", "#treatment-code", null, 10.18, -58);
+        exitCard("#treatment-inner", 12.54);
+        cutPulse(12.9);
+
+        enterCard("#dispatch-inner", "#dispatch-lines", "#dispatch-code", "#dispatch-status", 12.96, 64);
+        exitCard("#dispatch-inner", 14.12);
+        tl.to("#sequence-rail", { opacity: 0, duration: 0.15, ease: "none" }, 14.15);
+        tl.to("#grade", { opacity: 0, duration: 0.15, ease: "none" }, 14.15);
+
+        window.__timelines["video1-director-v3"] = tl;
+      })();
+    </script>
+  </body>
+</html>
